@@ -58,7 +58,9 @@ def signup_for_activity(activity_name: str, email: str):
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
-
+    # Validate email is provided   
+    if not email:
+        raise HTTPException(status_code=400, detail="Email is required")
     # Get the specific activity
     activity = activities[activity_name]
 
